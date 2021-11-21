@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: 'Montserrat', sans-serif, "Open Sans", "Helvetica Neue", Helvetica, Arial;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.container-fluid {
+    height: 100%;
+    overflow-y: hidden; /* don't show content that exceeds my height */
+}
