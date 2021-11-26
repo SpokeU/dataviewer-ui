@@ -1,0 +1,26 @@
+.connection-list {
+    display: flex;
+    flex-flow: row wrap;
+
+    .connection-card-item{
+        margin: 15px;
+    }
+
+    .create-connection-item {
+        height: 200px;
+        width: 510px;
+        background-color: #ffffff;
+        display: flex;
+
+        .create-connection-icon {
+            margin: auto;
+            height: 150px;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 3px 6px gray;
+            }
+        }
+    }
+    
+}

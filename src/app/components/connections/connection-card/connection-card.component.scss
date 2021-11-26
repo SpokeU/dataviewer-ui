@@ -1,0 +1,58 @@
+.connection-card {
+    width: 510px;
+    background-color: #ffffff;
+    padding: 25px;
+
+    .connection-card-header {
+        display: flex;
+
+        .connection-name {
+            font-size: 22px;
+            margin-bottom: auto;
+            margin-top: auto;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .connection-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .connection-run-button {
+            width: 30px;
+            height: 35px;
+            margin-left: auto;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .connection-card-details {
+        margin-top: 25px;
+
+        ul {
+            list-style: none;
+            padding: 0px;
+
+            li {
+                span {
+                    width: 35%;
+                    color: darkgrey;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                p {
+                    word-wrap: break-word;
+                    vertical-align: middle;
+                    display: inline-block;
+                    width: 55%;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

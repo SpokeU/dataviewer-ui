@@ -1,0 +1,37 @@
+<div class="create-connection-form">
+    <h4 class="form-header">Create connection</h4>
+    <form>
+        <div class="form-item">
+            <label for="connection-type">Type: </label>
+            <input id="connection-type" type="text">
+        </div>
+
+        <div class="form-group-inline">
+            <div class="form-item">
+                <label for="host">Host: </label>
+                <input id="host" type="text">
+            </div>
+            <div class="form-item">
+                <label for="port">Port: </label>
+                <input id="port" type="number">
+            </div>
+        </div>
+
+        <div class="form-item">
+            <label for="database">Database: </label>
+            <input id="database" type="text">
+        </div>
+        <div class="form-item">
+            <label for="username">Username: </label>
+            <input id="username" type="text" [formControl]="name">
+        </div>
+        <div class="form-item">
+            <label for="password">Password: </label>
+            <input id="password" type="text" [formControl]="name">
+        </div>
+        <button>Submit</button>
+        <button class="gray">Test</button>
+
+        <p>{{name.value}}</p>
+    </form>
+</div>

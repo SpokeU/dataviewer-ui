@@ -6,18 +6,24 @@ import { AppComponent } from './app.component';
 import { ConnectionCardComponent } from './components/connections/connection-card/connection-card.component';
 import { ConnectionsComponent } from './components/connections/connections.component';
 import { CoreModule } from './core/core.module';
+import { CreateConnectionComponent } from './components/connections/create-connection/create-connection.component';
+import { QueriesComponent } from './components/queries/queries.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnectionCardComponent,
-    ConnectionsComponent
+    ConnectionsComponent,
+    CreateConnectionComponent,
+    QueriesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

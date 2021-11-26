@@ -1,7 +1,6 @@
 <aside class="sidebar" [ngClass]="collapsed ? 'collapsed':'expanded'">
     <div class="sidebar-header">
-        <a href="/">Dataviewer</a>
-        <i class="sidebar-toggle" (click)="toggleSidebar()">X</i>
+        <a href="/">{{ collapsed ? "DV" : "Dataviewer"}}</a>
     </div>
     <div class="sidebar-content">
         <ul class="sidebar-list">
@@ -10,4 +9,5 @@
             </li>
         </ul>
     </div>
+    <div class="sidebar-toggle" (click)="toggleSidebar()">{{ collapsed ? ">" : "<"}}</div>
 </aside>

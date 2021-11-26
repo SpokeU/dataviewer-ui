@@ -3,28 +3,42 @@
     background: #ffffff;
     transition: all 0.3s;
     box-shadow: 3px 3px 6px rgb(12 95 174 / 10%);
+    position: relative;
 }
 
 .sidebar-header {
     height: 80px;
     text-align: center;
-    position: relative;
 
     a {
         line-height: 80px;
+        font-weight: 900;
+        color: #0061af;
     }
 
-    .sidebar-toggle {
-        display: block;
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-    }
     :hover {
         cursor: pointer;
     }
 }
+
+.sidebar-toggle {
+    display: block;
+    position: absolute;
+    top: 10%;
+    right: -20px;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    width: 20px;
+    background-color: #ffffff;
+    box-shadow: 3px 0px 5px rgb(12 95 174 / 10%);
+
+    &:hover {
+        cursor: pointer;
+    }
+
+}
+
 
 .sidebar-content {
     ul.sidebar-list {
@@ -65,8 +79,11 @@
 
 .collapsed {
     width: 65px;
-    transition: all 0.28s ease-out;
-    overflow: hidden;
+    transition: all 0.15s ease-out;
+
+    .sidebar-content {
+        overflow: hidden;
+    }
 }
 
 .expanded {
