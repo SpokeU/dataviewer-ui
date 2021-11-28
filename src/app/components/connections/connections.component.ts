@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SimpleModalService } from 'ngx-simple-modal';
+import { CreateConnectionComponent } from './create-connection/create-connection.component';
 
 @Component({
   selector: 'app-connections',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private simpleModalService: SimpleModalService) { }
 
   ngOnInit(): void {
+  }
+
+  openCreationForm() {
+    this.simpleModalService.addModal(CreateConnectionComponent, undefined, { closeOnClickOutside: true })
   }
 
 }

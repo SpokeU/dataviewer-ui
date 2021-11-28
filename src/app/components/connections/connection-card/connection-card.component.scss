@@ -1,5 +1,5 @@
 .connection-card {
-    width: 510px;
+    min-width: 430px;
     background-color: #ffffff;
     padding: 25px;
 
@@ -10,8 +10,8 @@
             font-size: 22px;
             margin-bottom: auto;
             margin-top: auto;
-            margin-left: 15px;
             font-weight: bold;
+            margin: 0px 25px 0px 15px;
         }
 
         .connection-icon {

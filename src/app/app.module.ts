@@ -9,6 +9,8 @@ import { CoreModule } from './core/core.module';
 import { CreateConnectionComponent } from './components/connections/create-connection/create-connection.component';
 import { QueriesComponent } from './components/queries/queries.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+import { SimpleModalModule } from 'ngx-simple-modal';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ReactiveFormsModule
+    SharedModule,
+    ReactiveFormsModule,
+    SimpleModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
