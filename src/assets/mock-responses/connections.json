@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"name": "Postgres Admin",
+		"type": "POSTGRES",
+		"host": "localhost",
+		"port": 5432,
+		"database": "admin",
+		"username": "postgres",
+		"password": "postgres"
+	},
+	{
+		"id": 2,
+		"name": "Postgres Users",
+		"type": "POSTGRES",
+		"host": "localhost",
+		"port": 5432,
+		"database": "admin",
+		"username": "postgres",
+		"password": "postgres"
+	}
+]

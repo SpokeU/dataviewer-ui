@@ -19,61 +19,12 @@ body {
 
 /* MODAL STYLES
 -------------------------------*/
-app-modal {
-    /* modals are hidden by default */
-    //display: none;
 
-    .app-modal {
-        /* modal container fixed across whole screen */
-        position: fixed;
-        display: flex;
-        left: 50%;
-        top: 40%;
-        transform: translate(-40%, -50%);
-
-        /* z-index must be higher than .jw-modal-background */
-        z-index: 1000;
-
-        /* enables scrolling for tall modals */
-        overflow: auto;
-
-        .app-modal-body {
-            padding: 10px;
-            background: #fff;
-        }
-    }
-
-    .app-modal-background {
-        /* modal background fixed across whole screen */
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-
-        /* semi-transparent black  */
-        background-color: #000;
-        opacity: 0.75;
-
-        /* z-index must be below .jw-modal and above everything else  */
-        z-index: 900;
-    }
-}
-
-body.app-modal-open {
-    /* body overflow is hidden to hide main scrollbar when modal window is open */
-    overflow: hidden;
-}
-
-///
-/*
-  A copy of our modal styles you can use.. its implementers choice what styles they want based on their lib of choice. If you make bootstrap modals, use their styles. Simples.
-*/
 .modal {
-    background-color:rgba(0,0,0,.4);
-    bottom:0;
-    height:100%;
-    left:0;
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    height: 100%;
+    left: 0;
     overflow: hidden;
     padding: 0 16px;
     position: fixed;
@@ -118,12 +69,26 @@ body.app-modal-open {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: column;
     height: 56px;
     padding: 0 16px;
+
+    .title {
+        font-weight: bold;
+        margin: 0;
+        margin-right: auto;
+    }
+
+    .close-icon {
+        margin-left: auto;
+    }&:hover {
+        cursor: pointer;
+        box-shadow: 0 3px 6px gray;
+    }
 }
 
 .modal-header {
-    border-bottom: 1px solid #cecece;
+    border-bottom: none;
 }
 
 .modal-body {
@@ -132,4 +97,67 @@ body.app-modal-open {
 
 .modal-footer {
     border-top: 1px solid #cecece;
+}
+
+//////////Forms and inputs
+.create-connection-form {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.form-header {
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.42857143;
+}
+
+.form-group-inline {
+    display: flex;
+}
+
+.form-group {
+    margin: 15px 5px 10px 5px;
+
+    label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #2e3b48;
+        display: block;
+        max-width: 100%;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        -webkit-appearance: none;
+        color: #0a2432;
+        border: 1px solid #169ce1;
+        height: 36px;
+        line-height: 1.3333333;
+        background-color: #fff;
+        outline: none;
+        border-radius: 0px;
+        width: 250px;
+        padding: 0px 0px 0px 15px;
+    }
+
+    input[type="number"] {
+        max-width: 85px;
+    }
+}
+
+button {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    border-width: 0;
+    color: #fff;
+    background-color: #0061af;
+    font-weight: 600;
+    margin: 15px 15px 10px 5px;
+
+    &.gray {
+        background-color: #a8a8a8;
+    }
 }

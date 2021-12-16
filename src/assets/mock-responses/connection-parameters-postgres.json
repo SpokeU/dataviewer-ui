@@ -1,0 +1,19 @@
+[
+  {
+    "key": "host",
+    "type": "text"
+  },
+  {
+    "key": "port",
+    "type": "number"
+  },{
+    "key": "database",
+    "type": "text"
+  },{
+    "key": "username",
+    "type": "text"
+  },{
+    "key": "password",
+    "type": "text"
+  }
+]

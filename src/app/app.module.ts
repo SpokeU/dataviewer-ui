@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,8 @@ import { QueriesComponent } from './components/queries/queries.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { SimpleModalModule } from 'ngx-simple-modal';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { SimpleModalModule } from 'ngx-simple-modal';
     CoreModule,
     SharedModule,
     ReactiveFormsModule,
-    SimpleModalModule
+    SimpleModalModule,
+    HttpClientModule,
+    FormlyModule.forRoot({ extras: { lazyRender: true } }),
+    FormlyBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

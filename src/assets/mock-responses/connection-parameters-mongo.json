@@ -1,0 +1,26 @@
+[
+    {
+        "key": "host",
+        "type": "text"
+    },
+    {
+        "key": "Port",
+        "type": "number"
+    },
+    {
+        "key": "collection",
+        "type": "text"
+    },
+    {
+        "key": "replicaSet",
+        "type": "text"
+    },
+    {
+        "key": "username",
+        "type": "text"
+    },
+    {
+        "key": "password",
+        "type": "text"
+    }
+]

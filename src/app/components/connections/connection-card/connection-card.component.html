@@ -1,7 +1,7 @@
 <div class="connection-card">
     <div class="connection-card-header">
         <img class="connection-icon" src="assets/postgres.svg">
-        <h3 class="connection-name">Postgres connection</h3>
+        <h3 class="connection-name">{{connection.name}}</h3>
         <img class="connection-run-button" src="assets/play-1.svg">
     </div>
 
@@ -9,23 +9,23 @@
         <ul>
             <li>
                 <span>Host</span>
-                <p>localhost</p>
+                <p>{{connection.host}}</p>
             </li>
             <li>
                 <span>Port</span>
-                <p>5432</p>
+                <p>{{connection.port}}</p>
             </li>
             <li>
                 <span>Database</span>
-                <p>admin</p>
+                <p>{{connection.database}}</p>
             </li>
             <li>
                 <span>Username</span>
-                <p>postgres</p>
+                <p>{{connection.username}}</p>
             </li>
             <li>
                 <span>Password</span>
-                <p>postgres</p>
+                <p>{{connection.password}}</p>
             </li>
         </ul>
     </div>
