@@ -7,25 +7,9 @@
 
     <div class="connection-card-details">
         <ul>
-            <li>
-                <span>Host</span>
-                <p>{{connection.host}}</p>
-            </li>
-            <li>
-                <span>Port</span>
-                <p>{{connection.port}}</p>
-            </li>
-            <li>
-                <span>Database</span>
-                <p>{{connection.database}}</p>
-            </li>
-            <li>
-                <span>Username</span>
-                <p>{{connection.username}}</p>
-            </li>
-            <li>
-                <span>Password</span>
-                <p>{{connection.password}}</p>
+            <li *ngFor="let item of connection.connectionDetails| keyvalue">
+                <span>{{item.key.toUpperCase()}}</span>
+                <p>{{item.value}}</p>
             </li>
         </ul>
     </div>

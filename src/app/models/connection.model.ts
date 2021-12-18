@@ -2,6 +2,7 @@ export interface Connection {
     id: number,
     name: string,
     type: string,
+    connectionDetails: {}
     host: string,
     port: number,
     database: string,
