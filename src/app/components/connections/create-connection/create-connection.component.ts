@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { SimpleModalComponent } from 'ngx-simple-modal';
 import { Observable } from 'rxjs';
-import { Connection } from 'src/app/models/connection.model';
+import { Connection, ConnectionType } from 'src/app/models/connection.model';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { FormlyService } from 'src/app/shared/service/formly.service';
 import { delay } from 'rxjs/operators';
@@ -56,7 +56,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<void, void> 
   initConnectionDetailsForm(connectionType: string) {
     this.connectionService.getConnectionParameters(connectionType).subscribe(parameters => {
       this.resetConnectionDetailsForm();
-      this.fields = this.formlyService.createFormlyFieldConfigs(parameters);
+      this.fields = this.formlyService.createFormlyFieldConfigs(parameters, connectionType);
     });
 
   }

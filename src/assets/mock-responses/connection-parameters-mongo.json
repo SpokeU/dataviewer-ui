@@ -4,7 +4,7 @@
         "type": "text"
     },
     {
-        "key": "Port",
+        "key": "port",
         "type": "number"
     },
     {

@@ -3,11 +3,6 @@ export interface Connection {
     name: string,
     type: string,
     connectionDetails: {}
-    host: string,
-    port: number,
-    database: string,
-    username: string,
-    password: string
 }
 
 export interface ConnectionParameter {
