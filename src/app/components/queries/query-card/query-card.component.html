@@ -1,0 +1,33 @@
+<div class="query-panel">
+    <h5 class="connection-name">{{query.name}}</h5>
+    <select class="connection-type">
+        <option *ngFor="let connectionType of connectionTypes$ | async" [ngValue]="connectionType">
+            {{connectionType}}
+        </option>
+    </select>
+
+    <textarea class="query-input">SELECT * FROM users WHERE id = {userId}</textarea>
+
+    <h6>Result</h6>
+    <table class="result-table">
+        <thead>
+            <th>Govno</th>
+            <th>Pizda</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>some</td>
+                <td>kiklop</td>
+            </tr>
+            <tr>
+                <td>drop</td>
+                <td>craig</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <button class="wide">Save</button>
+        <button class="wide gray">Run</button>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-<ng-template #loadingBar>
+<ng-template [ngIf]="loading" #loadingBar>
     <div class="lds-ellipsis" *ngIf="loading">
         <div></div>
         <div></div>
@@ -8,11 +8,12 @@
 </ng-template>
 
 
-<div class="modal-content" *ngIf="!loading else loadingBar">
+<div [ngClass]="!loading ? 'modal-content' : 'hidden'">
     <div class="modal-header">
         <span class="close-icon" (click)="close()">&times;</span>
-        <h4 class="title">Create connection</h4>
+        <h4 class="title">{{editMode ? "Edit connection" : "Create connection" }}</h4>
     </div>
+    <ng-container *ngTemplateOutlet="loadingBar"></ng-container>
     <div class="create-connection-form">
         <form [formGroup]="connectionForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
@@ -31,8 +32,11 @@
             <formly-form [form]="connectionDetailsForm" [fields]="fields" [model]="model" [options]="formOptions">
             </formly-form>
 
-            <button>Submit</button>
-            <button class="gray" type="submit">Test</button>
+            <div class="form-group">
+                <button>Submit</button>
+                <button class="gray" type="submit">Test</button>
+            </div>
+
         </form>
     </div>
 </div>

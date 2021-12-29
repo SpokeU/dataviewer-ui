@@ -22,7 +22,7 @@ export class ConnectionsComponent implements OnInit {
   }
 
   openCreationForm() {
-    this.simpleModalService.addModal(CreateConnectionComponent, undefined, { closeOnEscape: true, animationDuration: 0 })
+    this.simpleModalService.addModal(CreateConnectionComponent)
   }
 
 }

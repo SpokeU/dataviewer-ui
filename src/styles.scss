@@ -17,6 +17,10 @@ body {
     overflow-y: hidden; /* don't show content that exceeds my height */
 }
 
+.hidden {
+    display: none;
+}
+
 /* MODAL STYLES
 -------------------------------*/
 
@@ -134,8 +138,9 @@ body {
 
 .form-group {
     margin: 15px 5px 10px 5px;
+}
 
-    label {
+label {
         font-size: 13px;
         font-weight: 600;
         color: #2e3b48;
@@ -155,14 +160,12 @@ body {
         background-color: #fff;
         outline: none;
         border-radius: 0px;
-        width: 350px;
-        padding: 0px 0px 0px 15px;
+        padding: 0px 15px 0px 15px;
     }
 
     input[type="number"] {
         max-width: 85px;
     }
-}
 
 button {
     font-size: 14px;
@@ -172,10 +175,22 @@ button {
     color: #fff;
     background-color: #0061af;
     font-weight: 600;
-    margin: 15px 15px 10px 5px;
+    margin: 0px 15px 0px 0px;
 
     &.gray {
         background-color: #a8a8a8;
+    }
+
+    &.red {
+        background-color: #af0035;
+    }
+
+    &.thin {
+        padding: 2px 10px;
+    }
+
+    &.wide {
+        width: 140px;
     }
 }
 

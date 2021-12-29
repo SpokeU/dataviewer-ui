@@ -8,15 +8,17 @@ import { Connection, ConnectionParameter } from '../models/connection.model';
 })
 export class ConnectionService {
 
-  private connectionsState$ = new BehaviorSubject<Connection[]>([]);
+  private connectionsState = new BehaviorSubject<Connection[]>([]);
+
+  private connection$: Observable<Connection[]>
 
   constructor(private http: HttpClient) {
-    this.http.get<Connection[]>('assets/mock-responses/connections.json')
-      .subscribe(connections => this.connectionsState$.next(connections));
+    this.connection$ = this.connectionsState.asObservable();
+    this.fetchConnectionsFromServer();
   }
 
-  get connections(): Connection[] {
-    return this.connectionsState$.getValue();
+  private get connections(): Connection[] {
+    return this.connectionsState.getValue();
   }
 
   public getConnectionParameters(type: string): Observable<ConnectionParameter[]> {
@@ -28,14 +30,38 @@ export class ConnectionService {
   }
 
   public getConnections(): Observable<Connection[]> {
-    return this.connectionsState$.asObservable();
+    return this.connection$;
   }
 
   public addConnection(connection: Connection): void {
-    this.connectionsState$.next([...this.connections, connection]);
+    this.connectionsState.next([...this.connections, connection]);
 
     /* this.http.post<Connection>('/connections', connection).subscribe(connectionResponse => {
       this.connectionsState$.next([...this.connections, connectionResponse]);
     }) */
   }
+
+  public updateConnection(connection: Connection): void {
+    this.updateConnectionState(connection);
+  }
+
+  private fetchConnectionsFromServer() {
+    this.http.get<Connection[]>('assets/mock-responses/connections.json')
+      .subscribe(connections => this.connectionsState.next(connections));
+  }
+
+  public deleteConnection(id: number) {
+    const existingConnectionIndex = this.connections.findIndex(connectionItem => connectionItem.id === id);
+    const updatedState = [...this.connections]
+    updatedState.splice(existingConnectionIndex, 1);
+    this.connectionsState.next(updatedState);
+  }
+
+  private updateConnectionState(connection: Connection) {
+    const existingConnectionIndex = this.connections.findIndex(connectionItem => connectionItem.id === connection.id);
+    const updatedState = [...this.connections]
+    updatedState.splice(existingConnectionIndex, 1, connection);
+    this.connectionsState.next(updatedState);
+  }
+
 }

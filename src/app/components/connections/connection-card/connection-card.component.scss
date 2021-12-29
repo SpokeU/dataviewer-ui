@@ -1,7 +1,7 @@
 .connection-card {
     min-width: 430px;
     background-color: #ffffff;
-    padding: 25px;
+    padding: 25px 25px 10px 25px;
 
     .connection-card-header {
         display: flex;
@@ -53,6 +53,15 @@
                     margin: 0;
                 }
             }
+        }
+    }
+
+    .connection-card-footer {
+        display: flex;
+        flex-direction: row-reverse;
+
+        button {
+            margin: 0px 0px 0px 10px;
         }
     }
 }

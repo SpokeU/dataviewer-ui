@@ -1,1 +1,3 @@
-<p>queries works!</p>
+<p *ngFor="let query of queries$ | async">
+    <app-query-card [query]="query"></app-query-card>
+</p>

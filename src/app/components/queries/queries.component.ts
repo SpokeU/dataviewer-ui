@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Query } from 'src/app/models/query.model';
+import { QueryService } from 'src/app/services/query.service';
 
 @Component({
   selector: 'app-queries',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QueriesComponent implements OnInit {
 
-  constructor() { }
+  queries$: Observable<Query[]>;
+
+  constructor(private queryService: QueryService) { }
 
   ngOnInit(): void {
+    this.queries$ = this.queryService.getQueries();
   }
 
 }

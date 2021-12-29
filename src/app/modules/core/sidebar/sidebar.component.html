@@ -5,7 +5,7 @@
     <div class="sidebar-content">
         <ul class="sidebar-list">
             <li *ngFor="let item of items" class="sidebar-list-item">
-                <a [href]="item"><i class="sidebar-item-icon"></i> <span class="sidebar-item-text">{{item}}</span> </a>
+                <a [href]="item" routerLink="{{item}}"><i class="sidebar-item-icon"></i> <span class="sidebar-item-text">{{item}}</span> </a>
             </li>
         </ul>
     </div>

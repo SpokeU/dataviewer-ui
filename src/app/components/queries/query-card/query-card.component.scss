@@ -1,0 +1,55 @@
+.connection-name {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.query-panel {
+    background-color: #fff;
+    padding: 25px 25px 15px 25px;
+}
+
+.query-input {
+    background-color: #f6f6f6;
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 5px;
+
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+
+h6 {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.result-table {
+    min-width: 40%;
+    display: inline-block;
+
+    th {
+        background-color: #319CFF;
+        color: #fff;
+    }
+
+    td {
+        background-color: #F6F6F6;
+    }
+
+    th,
+    td {
+        padding: 5px 15px;
+    }
+}
+
+.actions {
+    margin: 25px 0px;
+}
