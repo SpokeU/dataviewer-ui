@@ -2,6 +2,7 @@
     display: inline-block;
     margin-right: 15px;
     font-weight: bold;
+    font-size: 22px;
 }
 
 .query-panel {
@@ -52,4 +53,9 @@ h6 {
 
 .actions {
     margin: 25px 0px;
+    display: flex;
+
+    .right {
+        margin-left: auto;
+    }
 }

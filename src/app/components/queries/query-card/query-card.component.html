@@ -1,33 +1,42 @@
-<div class="query-panel">
-    <h5 class="connection-name">{{query.name}}</h5>
-    <select class="connection-type">
-        <option *ngFor="let connectionType of connectionTypes$ | async" [ngValue]="connectionType">
-            {{connectionType}}
-        </option>
-    </select>
+<form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+    <div class="query-panel">
+        <input type="text" class="connection-name inline-edit" formControlName="name"
+            [size]="queryForm.value.name.length < 5 ? 5 : queryForm.value.name.length -5">
 
-    <textarea class="query-input">SELECT * FROM users WHERE id = {userId}</textarea>
+        <select class="connection-type" formControlName="connectionId">
+            <option *ngFor="let connection of connections$ | async" [ngValue]="connection.id">
+                {{connection.name}}
+            </option>
+        </select>
 
-    <h6>Result</h6>
-    <table class="result-table">
-        <thead>
-            <th>Govno</th>
-            <th>Pizda</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>some</td>
-                <td>kiklop</td>
-            </tr>
-            <tr>
-                <td>drop</td>
-                <td>craig</td>
-            </tr>
-        </tbody>
-    </table>
+        <textarea class="query-input" formControlName="queryString">{{originalQuery.queryString}}</textarea>
 
-    <div class="actions">
-        <button class="wide">Save</button>
-        <button class="wide gray">Run</button>
+        <h6>Result</h6>
+        <table class="result-table">
+            <thead>
+                <th>Value1</th>
+                <th>Value2</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>some</td>
+                    <td>kiklop</td>
+                </tr>
+                <tr>
+                    <td>drop</td>
+                    <td>craig</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="actions">
+            <button class="wide" type="submit" [class.gray]="!dirty" [disabled]="!dirty">Save</button>
+            <button class="wide" type="button" (click)="runQuery()">Run</button>
+            <div class="right">
+                <button class="wide" (click)="resetForm()" [class.gray]="!dirty" [disabled]="!dirty">Reset</button>
+                <button class="wide red" (click)="deleteQuery()">Delete</button>
+            </div>
+        </div>
+
     </div>
-</div>
+</form>

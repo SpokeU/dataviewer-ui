@@ -1,5 +1,6 @@
 export interface Query {
+    id: number,
     name: string,
-    query: string,
+    queryString: string,
     connectionId: number
 } 

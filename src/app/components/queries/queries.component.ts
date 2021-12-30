@@ -18,4 +18,15 @@ export class QueriesComponent implements OnInit {
     this.queries$ = this.queryService.getQueries();
   }
 
+  createQuery() {
+    const query: Query = {
+      id: 3,
+      name: "New query",
+      queryString: "SELECT * FROM {}",
+      connectionId: null
+    }
+
+    this.queryService.addQuery(query);
+  }
+
 }

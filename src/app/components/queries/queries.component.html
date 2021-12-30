@@ -1,3 +1,4 @@
+<button class="wide" (click)="createQuery()">Add</button>
 <p *ngFor="let query of queries$ | async">
     <app-query-card [query]="query"></app-query-card>
 </p>
