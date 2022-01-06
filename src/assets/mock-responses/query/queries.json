@@ -1,14 +1,14 @@
 [
     {
-        "id": 1,
-        "name": "Select all connections",
-        "queryString": "SELECT * FROM connection",
+        "id": 2,
+        "name": "Select user by id",
+        "queryString": "SELECT * FROM users WHERE id = ${userId}",
         "connectionId": 1
     },
     {
-        "id": 2,
-        "name": "Select user by id",
-        "queryString": "SELECT * FROM users WHERE id = {userId}",
+        "id": 1,
+        "name": "Select all connections",
+        "queryString": "SELECT * FROM connection",
         "connectionId": 1
     }
 ]

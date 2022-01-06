@@ -16,6 +16,9 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { QueryCardComponent } from './components/queries/query-card/query-card.component';
 import { defaultSimpleModalOptions } from 'ngx-simple-modal';
+import { QueryResultComponent } from './components/queries/query-result/query-result.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { defaultSimpleModalOptions } from 'ngx-simple-modal';
     ConnectionsComponent,
     CreateConnectionComponent,
     QueriesComponent,
-    QueryCardComponent
+    QueryCardComponent,
+    QueryResultComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { defaultSimpleModalOptions } from 'ngx-simple-modal';
     SimpleModalModule.forRoot({ container: "modal-container" }, { ...defaultSimpleModalOptions, ...{ closeOnEscape: true, animationDuration: 0 } }),
     HttpClientModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,23 @@
+.result-table {
+    min-width: 40%;
+    display: inline-block;
+
+    th {
+        background-color: #319cff;
+        color: #fff;
+    }
+
+    td {
+        background-color: #f6f6f6;
+    }
+
+    th,
+    td {
+        padding: 5px 15px;
+    }
+}
+
+.mat-header-cell {
+    font-size: inherit;
+    font-weight: bold;
+}

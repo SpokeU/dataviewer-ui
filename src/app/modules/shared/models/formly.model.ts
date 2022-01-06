@@ -14,3 +14,9 @@ export interface FormlyGroup {
     headerTemaplte: string,
     fieldGroups: FormlyFieldConfig[][];
 }
+
+export interface FormlyFieldDeclaration {
+    key: string,
+    type: string,
+    className?:string
+}

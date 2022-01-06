@@ -3,4 +3,8 @@ export interface Query {
     name: string,
     queryString: string,
     connectionId: number
-} 
+}
+
+export interface QueryResult {
+    data: any[]
+}

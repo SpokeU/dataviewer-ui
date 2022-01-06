@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Query } from '../models/query.model';
+import { Query, QueryResult } from '../models/query.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class QueryService {
       .subscribe(queries => this.queriesState.next(queries));
   }
 
+  public executeQuery() {
+    return this.http.get<QueryResult>('assets/mock-responses/query/query-result.json')
+  }
+
   public addQuery(query: Query) {
     this.queriesState.next([query, ...this.queries])
   }
@@ -27,7 +31,7 @@ export class QueryService {
     return this.queryObservable$;
   }
 
-  public updateQuery(query: Query){
+  public updateQuery(query: Query) {
     const existingConnectionIndex = this.queries.findIndex(queryItem => queryItem.id === query.id);
     const updatedState = [...this.queries]
     updatedState.splice(existingConnectionIndex, 1, query);

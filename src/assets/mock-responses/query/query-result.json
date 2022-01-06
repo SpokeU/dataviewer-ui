@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "id": 2,
+            "name": "PG connection 3",
+            "type": "POSTGRES",
+            "pool": "all"
+        },
+        {
+            "id": 4,
+            "name": "PG connection 4",
+            "type": "POSTGRES",
+            "pool": "all"
+        }
+    ]
+}

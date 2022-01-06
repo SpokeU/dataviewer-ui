@@ -1,12 +1,21 @@
 import { Injectable } from '@angular/core';
 import { FormlyField, FormlyFieldConfig } from '@ngx-formly/core';
 import { ConnectionParameter } from 'src/app/models/connection.model';
-import { FormlyGroup, Layout, Section } from '../models/formly.model';
+import { FormlyFieldDeclaration, FormlyGroup, Layout, Section } from '../models/formly.model';
+
+/**
+ * Formly fields format example see https://formly.dev/examples/other/advanced-layout-flex
+ */
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormlyService {
+
+  mappedTypes = new Map<string, string>([
+    ["string", "text"],
+    ["integer", "number"]
+  ]);
 
   relationalLayout: Layout = {
     sections: [
@@ -26,7 +35,7 @@ export class FormlyService {
 
   constructor() { }
 
-  createFormlyFieldConfigs(connectionParameter: ConnectionParameter[], connectionType: string) {
+  createFormlyFieldConfigs(connectionParameter: ConnectionParameter[]) {
     const layout = this.relationalLayout;
 
     //create sections
@@ -77,13 +86,16 @@ export class FormlyService {
     return formlyFields;
   }
 
-  createFormlyFieldConfig(connectionParameter: ConnectionParameter): FormlyFieldConfig {
+  createFormlyFieldConfig({ key, type, className }: FormlyFieldDeclaration): FormlyFieldConfig {
+    const fieldType = this.mappedTypes.get(type.toLowerCase());
+
     const fieldConfig: FormlyFieldConfig = {
-      key: connectionParameter.key,
+      key: key,
       type: 'input',
+      className: className,
       templateOptions: {
-        label: connectionParameter.key.toUpperCase(),
-        type: connectionParameter.type
+        label: key.toUpperCase(),
+        type: fieldType
       }
     }
     return fieldConfig;

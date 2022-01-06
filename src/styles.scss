@@ -1,12 +1,11 @@
 $input-border-color: rgba(22, 156, 225, 1);
-$input-padding:  0px 15px 0px 15px;
-
+$input-padding: 0px 15px 0px 15px;
+$deep-blue: #0061af;
 
 /* You can add global styles to this file, and also import other style files */
 * {
     font-family: "Montserrat", sans-serif, "Open Sans", "Helvetica Neue", Helvetica, Arial;
-    transition: all 0.1s;
-    transition: border-color 0.3s;
+    transition: all 0.1s, border-color 0.3s;
 }
 
 html {
@@ -54,9 +53,7 @@ body {
     border-radius: 4px;
     margin: 16px auto;
     position: relative;
-    transition: opacity 400ms ease-in-out;
     width: 100%;
-    will-change: opacity;
     display: inline-block;
     text-align: left;
 }
@@ -170,11 +167,11 @@ select {
     &.inline-edit {
         border: 1px solid rgba(0, 0, 0, 0);
         padding: 0px;
-    
+
         &:hover {
             border: 1px solid $input-border-color;
         }
-    
+
         &:focus {
             border: 1px solid $input-border-color;
             padding: $input-padding;
@@ -183,7 +180,13 @@ select {
 }
 
 input[type="number"] {
-    max-width: 85px;
+    max-width: 115px;
+}
+
+.query-paratemer-input {
+    input {
+        width: auto;
+    }
 }
 
 button {
@@ -218,10 +221,7 @@ button {
     display: inline-block;
     width: 80px;
     height: 80px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
 }
 .lds-ellipsis div {
     position: absolute;
@@ -229,7 +229,7 @@ button {
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: #fff;
+    background: $deep-blue;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
@@ -271,4 +271,13 @@ button {
     100% {
         transform: translate(24px, 0);
     }
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

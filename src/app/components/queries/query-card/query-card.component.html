@@ -1,7 +1,8 @@
-<form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+
+<form [formGroup]="queryForm" (ngSubmit)="onSubmit()" [ngStyle]="loaded ? {'opacity':'1', 'margin-top':'0px'}: {'opacity':'0', 'margin-top':'-20px'}">
     <div class="query-panel">
         <input type="text" class="connection-name inline-edit" formControlName="name"
-            [size]="queryForm.value.name.length < 5 ? 5 : queryForm.value.name.length -5">
+            [size]="queryForm.value.name.length">
 
         <select class="connection-type" formControlName="connectionId">
             <option *ngFor="let connection of connections$ | async" [ngValue]="connection.id">
@@ -11,23 +12,13 @@
 
         <textarea class="query-input" formControlName="queryString">{{originalQuery.queryString}}</textarea>
 
+        <formly-form [form]="queryParametersForm" [fields]="fields" [model]="model" [options]="formOptions">
+        </formly-form>
+        
+
         <h6>Result</h6>
-        <table class="result-table">
-            <thead>
-                <th>Value1</th>
-                <th>Value2</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>some</td>
-                    <td>kiklop</td>
-                </tr>
-                <tr>
-                    <td>drop</td>
-                    <td>craig</td>
-                </tr>
-            </tbody>
-        </table>
+        <app-query-result [queryResult]="queryResult"></app-query-result>
+        <app-loading-indicator [showIndicator]="queryInProggress"></app-loading-indicator>
 
         <div class="actions">
             <button class="wide" type="submit" [class.gray]="!dirty" [disabled]="!dirty">Save</button>

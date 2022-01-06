@@ -21,7 +21,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
 
   loading = true;
 
-  connectionTypes$!: Observable<string[]>;
+  connectionTypes!: string[];
 
   connectionDetailsForm = this.fb.group({});
   connectionForm = this.fb.group({
@@ -60,11 +60,11 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
   }
 
   initForm() {
-    this.connectionTypes$ = this.connectionService.getConnectionTypes();
     const typeControl = this.connectionForm.get('type');
     typeControl.valueChanges.subscribe(connectionType => this.initConnectionDetailsForm(connectionType));
 
-    this.connectionTypes$.subscribe(types => {
+    this.connectionService.getConnectionTypes().subscribe(types => {
+      this.connectionTypes = types;
       if (this.editMode) {
         typeControl.setValue(this.connection.type);
         typeControl.disable();
@@ -80,7 +80,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
     }
 
     this.connectionService.getConnectionParameters(connectionType).subscribe(parameters => {
-      this.fields = this.formlyService.createFormlyFieldConfigs(parameters, connectionType);
+      this.fields = this.formlyService.createFormlyFieldConfigs(parameters);
       this.initInputModel();
 
       this.loading = false;
