@@ -11,11 +11,6 @@ export class QueryResultComponent implements OnInit {
   @Input()
   queryResult: QueryResult;
 
-  data = [
-    { id: 2, name: "PG connection 3", type: "POSTGRES" },
-    { id: 4, name: "PG connection 4", type: "POSTGRES" }
-  ];
-
   displayedColumns: string[];
   dataSource: any[];
 
@@ -33,8 +28,8 @@ export class QueryResultComponent implements OnInit {
   }
 
   private initTable(queryResult: QueryResult) {
-    this.dataSource = queryResult.data;
-    this.displayedColumns = Object.getOwnPropertyNames(queryResult.data[0]);
+    this.dataSource = queryResult.result;
+    this.displayedColumns = Object.getOwnPropertyNames(queryResult.result[0]);
   }
 
 }

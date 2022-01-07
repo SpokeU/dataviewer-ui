@@ -1,30 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Query, QueryResult } from '../models/query.model';
+import { Query, QueryResult, RunQueryRequest } from '../models/query.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QueryService {
 
+  url: string
+
   private queriesState = new BehaviorSubject<Query[]>([]);
 
   private queryObservable$: Observable<Query[]>
 
   constructor(private http: HttpClient) {
+    this.url = 'http://localhost:8080/queries';
     this.queryObservable$ = this.queriesState.asObservable();
 
-    this.http.get<Query[]>('assets/mock-responses/query/queries.json')
+    this.http.get<Query[]>(this.url)
       .subscribe(queries => this.queriesState.next(queries));
   }
 
-  public executeQuery() {
-    return this.http.get<QueryResult>('assets/mock-responses/query/query-result.json')
+  public runQuery(runQueryRequest: RunQueryRequest): Observable<QueryResult> {
+    return this.http.post<QueryResult>(`${this.url}/run`, runQueryRequest);
   }
 
   public addQuery(query: Query) {
-    this.queriesState.next([query, ...this.queries])
+    this.http.post<Query>(this.url, query).subscribe(queryResponse => {
+      this.queriesState.next([queryResponse, ...this.queries])
+    })
   }
 
   public getQueries(): Observable<Query[]> {
@@ -32,6 +37,10 @@ export class QueryService {
   }
 
   public updateQuery(query: Query) {
+    this.http.put<Query>(`${this.url}/${query.id}`, query).subscribe(queryResponse => this.updateQueryState(queryResponse));
+  }
+
+  public updateQueryState(query: Query) {
     const existingConnectionIndex = this.queries.findIndex(queryItem => queryItem.id === query.id);
     const updatedState = [...this.queries]
     updatedState.splice(existingConnectionIndex, 1, query);

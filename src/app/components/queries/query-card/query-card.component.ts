@@ -4,7 +4,7 @@ import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Connection, ConnectionType } from 'src/app/models/connection.model';
-import { Query, QueryResult } from 'src/app/models/query.model';
+import { Query, QueryResult, RunQueryRequest } from 'src/app/models/query.model';
 import { FormlyService } from 'src/app/modules/shared/service/formly.service';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { QueryService } from 'src/app/services/query.service';
@@ -43,11 +43,11 @@ export class QueryCardComponent implements OnInit {
     this.connections$ = this.connectionService.getConnections();
     this.queryForm = this.fb.group(this.originalQuery)
 
-    this.queryForm.valueChanges.subscribe(val =>this.dirty = this.formChanged())
+    this.queryForm.valueChanges.subscribe(val => this.dirty = this.formChanged())
 
     const queryStringInput = this.queryForm.get('queryString');
 
-    queryStringInput.valueChanges.subscribe(val =>this.initQueryParametersForm(val))
+    queryStringInput.valueChanges.subscribe(val => this.initQueryParametersForm(val))
     this.initQueryParametersForm(queryStringInput.value)
   }
 
@@ -65,7 +65,13 @@ export class QueryCardComponent implements OnInit {
 
   runQuery() {
     this.queryInProggress = true;
-    this.queryService.executeQuery().pipe(delay(1000)).subscribe(result => {
+
+    const runQueryRequest: RunQueryRequest = {
+      connectionId: this.getFormValue('connectionId'),
+      queryString: this.getFormValue('queryString')
+    }
+
+    this.queryService.runQuery(runQueryRequest).pipe(delay(1000)).subscribe(result => {
       this.queryResult = result;
       this.queryInProggress = false;
     });
@@ -97,6 +103,10 @@ export class QueryCardComponent implements OnInit {
 
     return output;
 
+  }
+
+  private getFormValue(formControlName: string) {
+    return this.queryForm.get(formControlName).value;
   }
 
 

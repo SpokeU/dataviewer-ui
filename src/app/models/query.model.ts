@@ -1,10 +1,16 @@
 export interface Query {
-    id: number,
+    id?: number,
     name: string,
     queryString: string,
-    connectionId: number
+    connectionId?: number
 }
 
 export interface QueryResult {
-    data: any[]
+    result: any[]
+}
+
+export interface RunQueryRequest {
+    connectionId: number,
+    queryId?:number,
+    queryString: string
 }
