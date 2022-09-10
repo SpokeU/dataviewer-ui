@@ -23,8 +23,10 @@
 
             <div class="form-group">
                 <button type="submit">Submit</button>
-                <button class="gray">Test</button>
+                <button type="button" class="gray" (click)="testConnection()">Test</button>
             </div>
+
+            <p *ngIf="connectionTestResult" class="connection-result" [ngClass]="connectionTestResult.success ? 'success':'error'">{{connectionTestResult.message}}</p>
 
         </form>
     </div>

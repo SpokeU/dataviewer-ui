@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { SimpleModalComponent } from 'ngx-simple-modal';
 import { Observable } from 'rxjs';
-import { Connection, ConnectionType } from 'src/app/models/connection.model';
+import { Connection, ConnectionTestResult, ConnectionType } from 'src/app/models/connection.model';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { FormlyService } from 'src/app/modules/shared/service/formly.service';
 import { delay } from 'rxjs/operators';
@@ -33,6 +33,8 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
   fields: FormlyFieldConfig[];
   formOptions: FormlyFormOptions = {};
 
+  connectionTestResult: ConnectionTestResult;
+
   constructor(private fb: FormBuilder, private connectionService: ConnectionService, private formlyService: FormlyService) {
     super();
   }
@@ -48,7 +50,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
 
 
   onSubmit() {
-    const connectionFormData: Connection = { ...this.connectionForm.value, connectionDetails: { ...this.connectionDetailsForm.value } } as Connection
+    const connectionFormData: Connection = { ...this.connectionForm.value, details: { ...this.connectionDetailsForm.value } } as Connection
 
     if (this.editMode) {
       this.connectionService.updateConnection({...this.connection, ...connectionFormData})
@@ -89,7 +91,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
 
   initInputModel() {
     if (this.editMode) {
-      this.formOptions.resetModel(this.connection.connectionDetails);
+      this.formOptions.resetModel(this.connection.details);
       this.connectionForm.get('name').setValue(this.connection.name);
     } else {
       this.resetConnectionDetailsForm();
@@ -101,6 +103,11 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
     this.model = {};
     this.formOptions.resetModel({});
     this.connectionDetailsForm.reset();
+  }
+
+  testConnection() {
+    const connectionFormData: Connection = { ...this.connectionForm.getRawValue(), details: { ...this.connectionDetailsForm.value } } as Connection
+    this.connectionService.testConnection(connectionFormData).subscribe(result => this.connectionTestResult = result);
   }
 
 }

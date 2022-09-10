@@ -7,7 +7,7 @@
 
     <div class="connection-card-details">
         <ul>
-            <li *ngFor="let item of connection.connectionDetails | keyvalue">
+            <li *ngFor="let item of connection.details | keyvalue">
                 <span>{{item.key.toUpperCase()}}</span>
                 <p>{{item.value}}</p>
             </li>

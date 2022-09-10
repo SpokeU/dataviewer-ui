@@ -2,7 +2,7 @@ export interface Connection {
     id: number,
     name: string,
     type: string,
-    connectionDetails: {}
+    details: {}
 }
 
 export interface ConnectionParameter {
@@ -13,4 +13,9 @@ export interface ConnectionParameter {
 export enum ConnectionType {
     MONGO,
     POSTGRES
+}
+
+export interface ConnectionTestResult {
+    success: boolean,
+    message: string
 }

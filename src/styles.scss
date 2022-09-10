@@ -2,6 +2,9 @@ $input-border-color: rgba(22, 156, 225, 1);
 $input-padding: 0px 15px 0px 15px;
 $deep-blue: #0061af;
 
+$color-error: #e60033;
+$color-success: #55c377;
+
 /* You can add global styles to this file, and also import other style files */
 * {
     font-family: "Montserrat", sans-serif, "Open Sans", "Helvetica Neue", Helvetica, Arial;
@@ -271,6 +274,14 @@ button {
     100% {
         transform: translate(24px, 0);
     }
+}
+
+.success {
+    color: $color-success;
+}
+
+.error {
+    color: $color-error;
 }
 
 html,

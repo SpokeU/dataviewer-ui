@@ -71,7 +71,7 @@ export class QueryCardComponent implements OnInit {
       queryString: this.getFormValue('queryString')
     }
 
-    this.queryService.runQuery(runQueryRequest).pipe(delay(1000)).subscribe(result => {
+    this.queryService.runQuery(runQueryRequest).pipe(delay(500)).subscribe(result => {
       this.queryResult = result;
       this.queryInProggress = false;
     });

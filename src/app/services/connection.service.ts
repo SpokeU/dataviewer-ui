@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { Connection, ConnectionParameter } from '../models/connection.model';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, take } from 'rxjs/operators';
+import { Connection, ConnectionParameter, ConnectionTestResult } from '../models/connection.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +50,10 @@ export class ConnectionService {
 
   }
 
+  public testConnection(connection: Connection): Observable<ConnectionTestResult> {
+    return this.http.post<ConnectionTestResult>(`${this.url}/test`, connection);
+  }
+
   private fetchConnectionsFromServer() {
     this.http.get<Connection[]>(this.url)
       .subscribe(connections => this.connectionsState.next(connections));
@@ -70,5 +74,5 @@ export class ConnectionService {
     updatedState.splice(existingConnectionIndex, 1, connection);
     this.connectionsState.next(updatedState);
   }
-
 }
+
