@@ -1,5 +1,5 @@
 $input-border-color: rgba(22, 156, 225, 1);
-$input-padding: 0px 15px 0px 15px;
+$input-padding: 0px 10px 0px 10px;
 $deep-blue: #0061af;
 
 $color-error: #e60033;
@@ -157,7 +157,6 @@ label {
 input[type="text"],
 input[type="number"],
 select {
-    -webkit-appearance: none;
     color: #0a2432;
     border: 1px solid $input-border-color;
     height: 36px;

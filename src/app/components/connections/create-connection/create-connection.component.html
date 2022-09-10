@@ -22,10 +22,11 @@
             </formly-form>
 
             <div class="form-group">
-                <button type="submit">Submit</button>
+                <button type="submit" [ngClass]="{'gray': connectionForm.invalid}" [disabled]="connectionForm.invalid">Submit</button>
                 <button type="button" class="gray" (click)="testConnection()">Test</button>
             </div>
 
+            <app-loading-indicator [showIndicator]="connectionInProggress"></app-loading-indicator>
             <p *ngIf="connectionTestResult" class="connection-result" [ngClass]="connectionTestResult.success ? 'success':'error'">{{connectionTestResult.message}}</p>
 
         </form>

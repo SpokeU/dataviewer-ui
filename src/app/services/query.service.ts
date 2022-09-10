@@ -48,10 +48,12 @@ export class QueryService {
   }
 
   public deleteQuery(id: Number) {
-    const existingConnectionIndex = this.queries.findIndex(query => query.id === id);
-    const updatedState = [...this.queries]
-    updatedState.splice(existingConnectionIndex, 1);
-    this.queriesState.next(updatedState);
+    this.http.delete(`${this.url}/${id}`).subscribe(resp => {
+      const existingConnectionIndex = this.queries.findIndex(query => query.id === id);
+      const updatedState = [...this.queries]
+      updatedState.splice(existingConnectionIndex, 1);
+      this.queriesState.next(updatedState);
+    })
   }
 
   private get queries() {

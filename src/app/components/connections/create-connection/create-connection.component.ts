@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { SimpleModalComponent } from 'ngx-simple-modal';
 import { Observable } from 'rxjs';
@@ -20,13 +20,14 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
   connection: Connection
 
   loading = true;
+  connectionInProggress = false;
 
   connectionTypes!: string[];
 
   connectionDetailsForm = this.fb.group({});
   connectionForm = this.fb.group({
-    type: '',
-    name: ''
+    type: ['', Validators.required],
+    name: ['', Validators.required]
   });
 
   model = {};
@@ -53,7 +54,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
     const connectionFormData: Connection = { ...this.connectionForm.value, details: { ...this.connectionDetailsForm.value } } as Connection
 
     if (this.editMode) {
-      this.connectionService.updateConnection({...this.connection, ...connectionFormData})
+      this.connectionService.updateConnection({ ...this.connection, ...connectionFormData })
     } else {
       this.connectionService.addConnection(connectionFormData);
     }
@@ -106,8 +107,12 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
   }
 
   testConnection() {
+    this.connectionInProggress = true;
     const connectionFormData: Connection = { ...this.connectionForm.getRawValue(), details: { ...this.connectionDetailsForm.value } } as Connection
-    this.connectionService.testConnection(connectionFormData).subscribe(result => this.connectionTestResult = result);
+    this.connectionService.testConnection(connectionFormData).subscribe(result => { 
+      this.connectionInProggress = false;
+      this.connectionTestResult = result;
+    });
   }
 
 }
