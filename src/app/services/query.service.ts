@@ -17,7 +17,9 @@ export class QueryService {
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/queries';
     this.queryObservable$ = this.queriesState.asObservable();
+  }
 
+  public refreshData() {
     this.http.get<Query[]>(this.url)
       .subscribe(queries => this.queriesState.next(queries));
   }

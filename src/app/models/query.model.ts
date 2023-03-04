@@ -12,5 +12,6 @@ export interface QueryResult {
 export interface RunQueryRequest {
     connectionId: number,
     queryId?:number,
-    queryString: string
+    queryString: string,
+    queryParams: {}
 }

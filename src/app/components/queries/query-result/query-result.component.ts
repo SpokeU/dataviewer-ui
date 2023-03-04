@@ -13,6 +13,7 @@ export class QueryResultComponent implements OnInit {
 
   displayedColumns: string[];
   dataSource: any[];
+  message: string;
 
   constructor() { }
 
@@ -22,14 +23,19 @@ export class QueryResultComponent implements OnInit {
 
 
   ngOnChanges(changes: SimpleChanges) {
+    this.message = null;
     if (changes.queryResult.currentValue) {
       this.initTable(changes.queryResult.currentValue);
     }
   }
 
   private initTable(queryResult: QueryResult) {
-    this.dataSource = queryResult.result;
-    this.displayedColumns = Object.getOwnPropertyNames(queryResult.result[0]);
+    if (queryResult.result.length !== 0) {
+      this.dataSource = queryResult.result;
+      this.displayedColumns = Object.getOwnPropertyNames(queryResult.result[0]);
+    } else {
+      this.message = "Query didn't return any results"
+    }
   }
 
 }

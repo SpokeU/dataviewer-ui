@@ -1,4 +1,4 @@
-<div [ngClass]="'modal-content'" [ngStyle]="!loading ? {'opacity':'1', 'margin-top':'0px'}: {'opacity':'0', 'margin-top':'-500px'}">
+<div [ngClass]="'modal-content'" [ngStyle]="!loading ? {'opacity':'1', 'margin-top':'0px'}: {'opacity':'0'}">
     <div class="modal-header">
         <span class="close-icon" (click)="close()">&times;</span>
         <h4 class="title">{{editMode ? "Edit connection" : "Create connection" }}</h4>

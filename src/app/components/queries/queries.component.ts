@@ -15,6 +15,7 @@ export class QueriesComponent implements OnInit {
   constructor(private queryService: QueryService) { }
 
   ngOnInit(): void {
+    this.queryService.refreshData();
     this.queries$ = this.queryService.getQueries();
   }
 

@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="result-table" *ngIf="queryResult">
+<table mat-table [dataSource]="dataSource" class="result-table" *ngIf="queryResult && queryResult.result.length !== 0">
 
   <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
     <div>
@@ -10,3 +10,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<p class="message">{{message}}</p>

@@ -4,7 +4,8 @@
             [size]="queryForm.value.name.length">
 
         <select class="connection-type" formControlName="connectionId">
-            <option *ngFor="let connection of connections$ | async" [ngValue]="connection.id">
+            <option [ngValue]="null" selected disabled>Select connection</option>
+            <option *ngFor="let connection of connections$ | async; ; let i = index" [ngValue]="connection.id" [attr.selected]="i == 0 ? true : null">
                 {{connection.name}}
             </option>
         </select>
@@ -17,6 +18,7 @@
 
         <h6>Result</h6>
         <app-query-result [queryResult]="queryResult"></app-query-result>
+        <p *ngIf="queryError" class="error">{{queryError.message}}</p>
         <app-loading-indicator [showIndicator]="queryInProggress"></app-loading-indicator>
 
         <div class="actions">

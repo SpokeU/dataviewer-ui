@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Connection, ConnectionType } from 'src/app/models/connection.model';
 import { Query, QueryResult, RunQueryRequest } from 'src/app/models/query.model';
+import { ApiError } from 'src/app/modules/shared/models/http.models';
 import { FormlyService } from 'src/app/modules/shared/service/formly.service';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { QueryService } from 'src/app/services/query.service';
@@ -21,6 +22,7 @@ export class QueryCardComponent implements OnInit {
   connections$: Observable<Connection[]>
 
   queryResult: QueryResult;
+  queryError: ApiError;
 
   queryForm: FormGroup;
 
@@ -49,6 +51,8 @@ export class QueryCardComponent implements OnInit {
 
     queryStringInput.valueChanges.subscribe(val => this.initQueryParametersForm(val))
     this.initQueryParametersForm(queryStringInput.value)
+
+    
   }
 
   onSubmit() {
@@ -65,14 +69,23 @@ export class QueryCardComponent implements OnInit {
 
   runQuery() {
     this.queryInProggress = true;
+    this.queryError = null;
+    this.queryResult = null;
 
     const runQueryRequest: RunQueryRequest = {
       connectionId: this.getFormValue('connectionId'),
-      queryString: this.getFormValue('queryString')
+      queryString: this.getFormValue('queryString'),
+      queryParams: this.queryParametersForm.value
     }
 
     this.queryService.runQuery(runQueryRequest).pipe(delay(500)).subscribe(result => {
       this.queryResult = result;
+      
+    },
+    error => {
+      this.queryError = error.error;
+    },
+    ).add(() => {
       this.queryInProggress = false;
     });
   }

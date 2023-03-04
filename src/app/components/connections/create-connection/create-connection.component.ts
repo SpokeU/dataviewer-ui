@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { SimpleModalComponent } from 'ngx-simple-modal';
-import { Observable } from 'rxjs';
+import { SimpleModalComponent, SimpleModalService } from 'ngx-simple-modal';
+import { Observable, Subscription } from 'rxjs';
 import { Connection, ConnectionTestResult, ConnectionType } from 'src/app/models/connection.model';
 import { ConnectionService } from 'src/app/services/connection.service';
 import { FormlyService } from 'src/app/modules/shared/service/formly.service';
 import { delay } from 'rxjs/operators';
 import { ConnectionInput } from 'src/app/modules/shared/models/simple-modal.model';
+import { ConfirmModalComponent } from 'src/app/modules/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-create-connection',
@@ -36,7 +37,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
 
   connectionTestResult: ConnectionTestResult;
 
-  constructor(private fb: FormBuilder, private connectionService: ConnectionService, private formlyService: FormlyService) {
+  constructor(private fb: FormBuilder, private connectionService: ConnectionService, private formlyService: FormlyService, private simpleModalService: SimpleModalService) {
     super();
   }
 
@@ -60,6 +61,7 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
     }
 
     this.close();
+
   }
 
   initForm() {
@@ -106,10 +108,10 @@ export class CreateConnectionComponent extends SimpleModalComponent<ConnectionIn
     this.connectionDetailsForm.reset();
   }
 
-  testConnection() {
+  testConnection(): Subscription {
     this.connectionInProggress = true;
     const connectionFormData: Connection = { ...this.connectionForm.getRawValue(), details: { ...this.connectionDetailsForm.value } } as Connection
-    this.connectionService.testConnection(connectionFormData).subscribe(result => { 
+    return this.connectionService.testConnection(connectionFormData).subscribe(result => {
       this.connectionInProggress = false;
       this.connectionTestResult = result;
     });
